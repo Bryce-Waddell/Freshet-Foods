@@ -182,6 +182,30 @@ section{scroll-margin-top:var(--nav-h)}
 
 /* mission */
 .mission{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2rem,6vw,5rem);align-items:start}
+
+/* dictionary entry */
+.entry{
+  margin-top:2.4rem;padding:1.7rem 1.6rem;background:var(--shell);
+  border:1px solid var(--hairline);border-left:2px solid var(--teal);border-radius:3px;
+}
+.entry__head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem .7rem;margin-bottom:.2rem}
+.entry__word{font-size:1.5rem;line-height:1.1;letter-spacing:-.01em}
+.entry__word b{font-weight:600}
+.entry__ipa{font-size:1.02rem;color:var(--ink-60);white-space:nowrap}
+.entry__pos{
+  font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--slate);
+}
+.entry__pos i{font-style:normal;color:var(--ink-60);text-transform:none;letter-spacing:.02em;font-size:.86rem}
+.entry__def{
+  margin:.9rem 0 0;display:grid;grid-template-columns:1.1rem 1fr;
+  font-size:1.06rem;line-height:1.55;color:var(--ink-80);
+}
+.entry__def span{color:var(--teal);font-weight:600}
+.entry__note{
+  margin:1.2rem 0 0;padding-top:1rem;border-top:1px solid var(--hairline);
+  font-size:.94rem;font-style:italic;color:var(--ink-60);
+}
 .mission__quote{
   font-size:clamp(1.32rem,2.5vw,1.86rem);line-height:1.45;color:var(--ink);
   border-left:2px solid var(--teal);padding-left:clamp(1.2rem,2.5vw,2rem);margin:0 0 1.6rem;
@@ -220,6 +244,32 @@ section{scroll-margin-top:var(--nav-h)}
 .band .wrap{position:relative;z-index:1}
 .band h2{max-width:18ch}
 .band .lede{color:rgba(255,255,255,.74)}
+/* featured statistic */
+.figure{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(1.4rem,4vw,3rem);
+  align-items:center;margin-top:3.4rem;padding:clamp(1.8rem,4vw,2.6rem);
+  background:rgba(148,182,183,.07);border:1px solid rgba(148,182,183,.22);border-radius:3px;
+}
+.figure__k{
+  font-size:clamp(3.4rem,9vw,5.6rem);line-height:.9;color:var(--ember);
+  font-variant-numeric:lining-nums;letter-spacing:-.02em;white-space:nowrap;
+}
+.figure__k small{font-size:.42em;color:var(--sage);letter-spacing:0}
+.figure p{margin:0 0 .9rem;font-size:clamp(1.04rem,1.5vw,1.2rem);color:rgba(255,255,255,.82);line-height:1.55}
+.figure p:last-child{margin:0}
+.figure cite{
+  display:block;font-family:var(--sans);font-style:normal;font-size:.7rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--sage);
+}
+.figure cite a{
+  color:var(--sage);text-decoration:underline;text-decoration-color:rgba(148,182,183,.45);
+  text-underline-offset:3px;transition:color .2s,text-decoration-color .2s;
+}
+.figure cite a:hover{color:#fff;text-decoration-color:#fff}
+@media (max-width:640px){
+  .figure{grid-template-columns:1fr;gap:1.1rem;text-align:left}
+}
+
 .stats{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
   gap:2.4rem;margin-top:3.6rem;padding-top:2.8rem;border-top:1px solid rgba(148,182,183,.24);
@@ -360,6 +410,16 @@ section{scroll-margin-top:var(--nav-h)}
     <div>
       <p class="eyebrow">Our Mission</p>
       <h2>Food that never<br>crosses an ocean.</h2>
+
+      <div class="entry">
+        <div class="entry__head">
+          <span class="entry__word">fresh&middot;<b>et</b></span>
+          <span class="entry__ipa">| \&#8202;ˈfre-shət&#8202;\</span>
+        </div>
+        <p class="entry__pos">noun &nbsp;<i>often attributive</i></p>
+        <p class="entry__def"><span>:</span> a great rise or overflowing, a swelling quantity, an influx</p>
+        <p class="entry__note">The spring surge that carries a river to the sea — and the name we work under.</p>
+      </div>
     </div>
     <div>
       <blockquote class="mission__quote">
@@ -387,7 +447,7 @@ section{scroll-margin-top:var(--nav-h)}
           <span class="n">03</span>
           <div>
             <strong>Shorten the supply chain</strong>
-            <p>Harvest to freezer in hours, not weeks at sea. Fewer miles, fewer hands, fewer places for quality to slip.</p>
+            <p>A short, direct route from harvest to freezer. Fewer miles, fewer hands, fewer places for quality to slip.</p>
           </div>
         </li>
       </ul>
@@ -410,8 +470,8 @@ section{scroll-margin-top:var(--nav-h)}
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/><circle cx="12" cy="12" r="3.2"/>
         </svg>
-        <h3>IQF Freezing</h3>
-        <p>Individually quick-frozen in a fluidized tunnel — locking in texture, color, and nutrition within hours of harvest, piece by piece rather than in a block.</p>
+        <h3>Frozen at Peak Freshness</h3>
+        <p>Blast freezing on site, so product is held at the quality it came in with — texture, color, and nutrition locked in rather than lost to a long trip to a distant processor.</p>
       </article>
 
       <article class="card">
@@ -468,14 +528,26 @@ section{scroll-margin-top:var(--nav-h)}
       dock, one field, one contract at a time.
     </p>
 
+    <figure class="figure">
+      <div class="figure__k">~80<small>%</small></div>
+      <figcaption>
+        <p>
+          Despite having the largest Exclusive Economic Zone in the world, the United States
+          relies heavily on foreign supply chains — roughly <strong>80% of the seafood
+          consumed in the U.S. is imported.</strong>
+        </p>
+        <cite>
+          Source:
+          <a href="https://www.fisheries.noaa.gov/national/sustainable-fisheries/fisheries-united-states#us-seafood-consumption-and-import-reliance" target="_blank" rel="noopener">NOAA Fisheries</a>
+          &middot; USDA
+        </cite>
+      </figcaption>
+    </figure>
+
     <div class="stats">
       <div class="stat">
         <span class="k">100<span>%</span></span>
         <span class="v">Domestically<br>sourced inputs</span>
-      </div>
-      <div class="stat">
-        <span class="k">&lt; 24<span>h</span></span>
-        <span class="v">Target harvest<br>to frozen</span>
       </div>
       <div class="stat">
         <span class="k">Lot<span>-level</span></span>
