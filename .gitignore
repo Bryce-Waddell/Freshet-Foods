@@ -1,0 +1,8 @@
+# local version snapshots: keep out of the public site
+freshetfoods.com_v*.html
+
+# brand reference: not part of the public site
+FreshetFoodsColorScheme.xml
+
+# stale nested clone of the old FreshetFoods.com repo
+FreshetFoods.com/
