@@ -13,7 +13,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230F1624'/><path d='M8 21c4-9 12-11 16-12-1 8-5 14-11 14-2 0-4-1-5-2z' fill='%23009EAF'/><path d='M9 23c3-5 8-8 13-11' stroke='%2394B6B7' stroke-width='1.4' fill='none' stroke-linecap='round'/></svg>">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <style>
 /* ============ TOKENS (from FreshetFoodsColorScheme.xml — "Aquora") ============ */
@@ -79,13 +81,14 @@ p{margin:0 0 1.1em}
 .nav__inner{max-width:var(--wrap);margin-inline:auto;
   padding-left:max(var(--gutter),env(safe-area-inset-left));padding-right:max(var(--gutter),env(safe-area-inset-right));
   height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:var(--paper)}
-.brand svg{width:30px;height:30px;flex:none}
-.brand__name{font-size:1.34rem;letter-spacing:.01em;line-height:1}
-.brand__name b{font-weight:600}
-.brand__tag{
-  display:block;font-family:var(--sans);font-size:.56rem;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin-top:.25rem;
+/* logo 1b: sunrise seal + Garamond/Jost wordmark */
+.brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#F5F7F7}
+.brand__seal{width:42px;height:42px;flex:none}
+.brand__word{display:flex;flex-direction:column;gap:.3rem}
+.brand__name{font-size:1.6rem;font-weight:500;line-height:.85;letter-spacing:-.005em}
+.brand__sub{
+  font-family:var(--sans);font-size:.6rem;font-weight:500;line-height:1;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--sage);
 }
 .nav__links{display:flex;align-items:center;gap:2.1rem;list-style:none;margin:0;padding:0}
 .nav__links a{
@@ -158,6 +161,9 @@ p{margin:0 0 1.1em}
 }
 .hero__bg svg{position:absolute;left:0;right:0;bottom:-1px;width:130%;min-width:900px;opacity:.5}
 .hero .wrap{position:relative}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(2rem,5vw,4.5rem)}
+/* logo 2b: fish avatar */
+.hero__fish{width:clamp(200px,24vw,300px);height:auto;filter:drop-shadow(0 24px 40px rgba(0,0,0,.35))}
 .hero h1{
   font-size:clamp(2.9rem,7.4vw,5.4rem);letter-spacing:-.022em;max-width:16ch;
   margin-bottom:1.6rem;
@@ -319,6 +325,7 @@ section{scroll-margin-top:var(--nav-h)}
 }
 .form .btn{border:0;cursor:pointer;justify-self:start;font-family:var(--sans)}
 .form__note{margin:0;font-size:.92rem;font-style:italic;color:var(--ink-60)}
+.contact__fish{width:72px;height:72px;margin-bottom:1.6rem}
 .contact__aside dl{margin:0;display:grid;gap:1.5rem}
 .contact__aside dt{
   font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.16em;
@@ -332,7 +339,14 @@ section{scroll-margin-top:var(--nav-h)}
 .foot{background:var(--ink);color:rgba(255,255,255,.58);padding:3.4rem 0 calc(2.6rem + env(safe-area-inset-bottom));font-size:.92rem}
 .foot__top{display:flex;flex-wrap:wrap;gap:1.6rem;justify-content:space-between;align-items:flex-end;
   padding-bottom:2.2rem;border-bottom:1px solid rgba(148,182,183,.18)}
-.foot__motto{font-size:1.28rem;color:var(--sage);font-style:italic;margin:0;max-width:30ch}
+.foot__brand{display:flex;align-items:center;gap:1.4rem}
+.foot__seal{width:112px;height:112px;flex:none}
+.foot__name{font-size:2.3rem;font-weight:500;line-height:.9;color:#F5F7F7}
+.foot__sub{
+  font-family:var(--sans);font-size:.72rem;font-weight:500;letter-spacing:.5em;
+  text-transform:uppercase;color:var(--sage);margin:.45rem 0 1rem;
+}
+.foot__motto{font-size:1.12rem;color:var(--sage);font-style:italic;margin:0;max-width:30ch}
 .foot__nav{display:flex;flex-wrap:wrap;gap:0 1.6rem;list-style:none;margin:0;padding:0;
   font-family:var(--sans);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
 .foot__nav a{display:inline-block;padding:.85rem 0;color:rgba(255,255,255,.66);text-decoration:none}
@@ -351,6 +365,8 @@ section{scroll-margin-top:var(--nav-h)}
 
 @media (max-width:880px){
   .mission,.contact{grid-template-columns:1fr}
+  .hero__grid{grid-template-columns:1fr;gap:0}
+  .hero__fish{order:-1;width:96px;margin-bottom:1.8rem}
   body.nav-open{overflow:hidden}
 }
 @media (max-width:620px){
@@ -371,8 +387,10 @@ section{scroll-margin-top:var(--nav-h)}
   .card{padding:1.7rem 1.4rem}
   .figure{margin-top:2.4rem}
   .stats{gap:1.8rem;margin-top:2.6rem;padding-top:2.2rem}
-  .brand__name{font-size:1.22rem}
-  .brand__tag{font-size:.58rem;letter-spacing:.16em}
+  .brand__seal{width:38px;height:38px}
+  .brand__name{font-size:1.45rem}
+  .foot__seal{width:88px;height:88px}
+  .foot__name{font-size:1.9rem}
   .foot__bottom{flex-direction:column}
 }
 </style>
@@ -384,13 +402,20 @@ section{scroll-margin-top:var(--nav-h)}
 <header class="nav">
   <div class="nav__inner">
     <a class="brand" href="#top" aria-label="Freshet Foods home">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <path d="M6 22C10 12 19 9 26 8c-1 10-6 16-13 16-3 0-5.5-.7-7-2z" fill="#009EAF"/>
-        <path d="M7.5 24C11 18 16.5 14 23 11" stroke="#94B6B7" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <svg class="brand__seal" viewBox="0 0 100 100" aria-hidden="true">
+        <defs><clipPath id="sealNav"><circle cx="50" cy="50" r="48"/></clipPath></defs>
+        <g clip-path="url(#sealNav)">
+          <rect width="100" height="100" fill="#0F1624"/>
+          <circle cx="50" cy="56" r="22" fill="#D85900"/>
+          <rect x="0" y="56" width="100" height="44" fill="#0F1624"/>
+          <path d="M4 60 C 20 50, 34 50, 50 60 S 80 70, 96 58" stroke="#009EAF" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M4 76 C 20 66, 34 66, 50 76 S 80 86, 96 74" stroke="#009EAF" stroke-width="7" fill="none" stroke-linecap="round" opacity=".6"/>
+        </g>
+        <circle cx="50" cy="50" r="48" fill="none" stroke="#374D79" stroke-width="3"/>
       </svg>
-      <span>
-        <span class="brand__name">Freshet <b>Foods</b></span>
-        <span class="brand__tag">American Soil &amp; Shore</span>
+      <span class="brand__word">
+        <span class="brand__name">Freshet</span>
+        <span class="brand__sub">Foods</span>
       </span>
     </a>
 
@@ -418,7 +443,8 @@ section{scroll-margin-top:var(--nav-h)}
     </svg>
   </div>
 
-  <div class="wrap">
+  <div class="wrap hero__grid">
+   <div>
     <p class="eyebrow">Freshet Foods &middot; Domestic Food Processing</p>
     <h1>From American Soil <em>and</em> Shore.</h1>
     <div class="hero__rule"></div>
@@ -435,6 +461,29 @@ section{scroll-margin-top:var(--nav-h)}
       <a class="btn btn--primary" href="#contact">Work With Us</a>
       <a class="btn btn--ghost" href="#capabilities">Our Capabilities</a>
     </div>
+   </div>
+
+    <svg class="hero__fish" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+      <defs><clipPath id="avHero"><circle cx="50" cy="50" r="48"/></clipPath></defs>
+      <circle cx="50" cy="50" r="48" fill="#374D79"/>
+      <g clip-path="url(#avHero)">
+        <circle cx="78" cy="24" r="8" fill="#D85900"/>
+        <path d="M0 78 C 16 70, 30 70, 50 78 S 84 86, 100 76 V100 H0 Z" fill="#009EAF" opacity=".35"/>
+        <g transform="translate(13 28) scale(0.62)">
+          <path d="M52 16 Q62 2 78 15 Z" fill="#007F8D"/>
+          <path d="M32 40 L10 22 Q4 40 10 58 Z" fill="#007F8D" stroke="#007F8D" stroke-width="6" stroke-linejoin="round"/>
+          <ellipse cx="62" cy="40" rx="36" ry="28" fill="#00B3C6"/>
+          <ellipse cx="64" cy="51" rx="22" ry="11" fill="#BFE3E4"/>
+          <circle cx="77" cy="33" r="7.5" fill="#0F1624"/>
+          <circle cx="79.5" cy="30.5" r="2.6" fill="#FFFFFF"/>
+          <circle cx="71" cy="45" r="4.5" fill="#E8720F" opacity=".75"/>
+          <path d="M85 43 Q89.5 47.5 94 42" stroke="#0F1624" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M50 38 Q44 46 52 50" stroke="#007F8D" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <circle cx="76" cy="44" r="2.4" stroke="#BFE3E4" stroke-width="1.2"/>
+        <circle cx="81" cy="37" r="1.6" stroke="#BFE3E4" stroke-width="1"/>
+      </g>
+    </svg>
   </div>
 </section>
 
@@ -639,6 +688,24 @@ section{scroll-margin-top:var(--nav-h)}
     </div>
 
     <aside class="contact__aside">
+      <svg class="contact__fish" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <defs><clipPath id="avContact"><circle cx="50" cy="50" r="48"/></clipPath></defs>
+        <circle cx="50" cy="50" r="48" fill="#374D79"/>
+        <g clip-path="url(#avContact)">
+          <circle cx="78" cy="24" r="8" fill="#E8720F"/>
+          <path d="M0 78 C 16 70, 30 70, 50 78 S 84 86, 100 76 V100 H0 Z" fill="#009EAF" opacity=".35"/>
+          <g transform="translate(13 28) scale(0.62)">
+            <path d="M52 16 Q62 2 78 15 Z" fill="#007F8D"/>
+            <path d="M32 40 L10 22 Q4 40 10 58 Z" fill="#007F8D" stroke="#007F8D" stroke-width="6" stroke-linejoin="round"/>
+            <ellipse cx="62" cy="40" rx="36" ry="28" fill="#00B3C6"/>
+            <ellipse cx="64" cy="51" rx="22" ry="11" fill="#BFE3E4"/>
+            <circle cx="77" cy="33" r="7.5" fill="#0F1624"/>
+            <circle cx="79.5" cy="30.5" r="2.6" fill="#FFFFFF"/>
+            <circle cx="71" cy="45" r="4.5" fill="#E8720F" opacity=".75"/>
+            <path d="M85 43 Q89.5 47.5 94 42" stroke="#0F1624" stroke-width="2.6" stroke-linecap="round"/>
+          </g>
+        </g>
+      </svg>
       <dl>
         <div>
           <dt>Email</dt>
@@ -659,7 +726,29 @@ section{scroll-margin-top:var(--nav-h)}
 <footer class="foot">
   <div class="wrap">
     <div class="foot__top">
-      <p class="foot__motto">Harvested here. Packed here.<br>Defending the domestic supply.</p>
+      <div class="foot__brand">
+        <svg class="foot__seal" viewBox="0 0 200 200" fill="none" role="img" aria-label="Freshet Foods seal">
+          <defs>
+            <clipPath id="sealFoot"><circle cx="100" cy="100" r="62"/></clipPath>
+            <path id="ringFoot" d="M100 100 m-80 0 a80 80 0 1 1 160 0 a80 80 0 1 1 -160 0"/>
+          </defs>
+          <circle cx="100" cy="100" r="96" stroke="#374D79" stroke-width="2"/>
+          <circle cx="100" cy="100" r="64" stroke="#374D79" stroke-width="2"/>
+          <text textLength="490" lengthAdjust="spacing" style="fill:#94B6B7;font-family:'Jost',sans-serif;font-size:15px;font-weight:500;letter-spacing:6px;"><textPath href="#ringFoot" startOffset="2%">FRESHET FOODS &#183; FIELD &amp; SEA &#183; FRESHET FOODS &#183; FIELD &amp; SEA &#183;</textPath></text>
+          <g clip-path="url(#sealFoot)">
+            <circle cx="100" cy="108" r="30" fill="#D85900"/>
+            <rect x="30" y="108" width="140" height="70" fill="#0F1624"/>
+            <path d="M30 112 C 50 102, 70 102, 90 112 S 130 122, 170 110" stroke="#009EAF" stroke-width="5" stroke-linecap="round"/>
+            <path d="M30 130 C 50 120, 70 120, 90 130 S 130 140, 170 128" stroke="#009EAF" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+            <path d="M30 148 C 50 138, 70 138, 90 148 S 130 158, 170 146" stroke="#009EAF" stroke-width="5" stroke-linecap="round" opacity=".45"/>
+          </g>
+        </svg>
+        <div>
+          <div class="foot__name">Freshet</div>
+          <div class="foot__sub">Foods</div>
+          <p class="foot__motto">Harvested here. Packed here.<br>Defending the domestic supply.</p>
+        </div>
+      </div>
       <ul class="foot__nav">
         <li><a href="#mission">Mission</a></li>
         <li><a href="#capabilities">Capabilities</a></li>
