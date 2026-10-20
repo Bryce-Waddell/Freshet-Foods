@@ -10,6 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freshetfoods.com">
 <meta name="theme-color" content="#0F1624">
+<script>document.documentElement.className += ' js';</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
@@ -65,7 +66,7 @@ a{color:var(--slate)}
   font-family:var(--sans);font-size:.72rem;font-weight:500;
   letter-spacing:.22em;text-transform:uppercase;color:var(--teal-deep);margin:0 0 .9rem;
 }
-.hero .eyebrow,.band .eyebrow{color:var(--teal)}
+.hero .eyebrow{color:var(--teal)}
 h1,h2,h3{font-weight:400;line-height:1.12;letter-spacing:-.012em;margin:0;text-wrap:balance}
 h2{font-size:clamp(2rem,4.4vw,3.1rem)}
 h3{font-size:1.42rem;line-height:1.25}
@@ -222,6 +223,19 @@ section{scroll-margin-top:var(--nav-h)}
   margin:1.2rem 0 0;padding-top:1rem;border-top:1px solid var(--hairline);
   font-size:.94rem;font-style:italic;color:var(--ink-60);
 }
+/* the name, set as the story's epigraph: a dictionary entry, centred, no box */
+.entry--epigraph{
+  max-width:40rem;margin:0 auto clamp(4rem,9vw,6rem);padding:0;text-align:center;
+  background:none;border:0;border-radius:0;
+}
+.entry--epigraph .entry__head{justify-content:center;gap:.4rem .9rem;margin-bottom:.5rem}
+.entry--epigraph .entry__word{font-size:clamp(2.4rem,5vw,3.4rem);font-weight:500}
+.entry--epigraph .entry__ipa{font-size:clamp(1.1rem,1.8vw,1.35rem)}
+.entry--epigraph .entry__def{display:block;font-size:clamp(1.2rem,2vw,1.5rem);line-height:1.5;color:var(--ink);margin-top:1rem}
+.entry--epigraph .entry__def span{margin-right:.25em}
+.entry--epigraph .entry__note{border:0;padding:0;margin-top:1.6rem;font-size:1rem}
+.entry--epigraph .entry__note::before{content:"";display:block;width:48px;height:2px;margin:0 auto 1.4rem;background:var(--ember)}
+
 .mission__quote{
   font-size:clamp(1.32rem,2.5vw,1.86rem);line-height:1.45;color:var(--ink);
   border-left:2px solid var(--teal);padding-left:clamp(1.2rem,2.5vw,2rem);margin:0 0 1.6rem;
@@ -236,13 +250,85 @@ section{scroll-margin-top:var(--nav-h)}
 .pillars strong{display:block;font-weight:600;font-size:1.06rem;margin-bottom:.15rem}
 .pillars p{margin:0;color:var(--ink-60);font-size:.98rem;line-height:1.6}
 
-/* our story (inside the mission section) */
-.story{
-  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2rem,6vw,5rem);align-items:start;
-  margin-top:clamp(3.5rem,8vw,6rem);padding-top:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--hairline);
+/* our story: four beats (inside the mission section) */
+.storyline{display:grid;gap:clamp(3rem,7vw,5rem);margin-top:clamp(2.5rem,6vw,4rem)}
+.beat__label{
+  display:flex;align-items:center;gap:.8rem;margin:0 0 1.1rem;
+  font-family:var(--sans);font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-deep);
 }
-.story__lead{font-size:clamp(1.25rem,2.2vw,1.6rem);line-height:1.45;color:var(--ink);margin:0 0 1.4rem}
-.story__body{font-size:1.06rem;line-height:1.7;color:var(--ink-80);margin:0}
+.beat__label::after{content:"";flex:1;height:1px;background:var(--hairline)}
+.beat__text{font-size:clamp(1.08rem,1.5vw,1.2rem);line-height:1.65;color:var(--ink-80);max-width:62ch;margin:0}
+.beat__lead{font-size:clamp(1.3rem,2.3vw,1.7rem);line-height:1.42;color:var(--ink);margin:0}
+
+.beat--stat{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.beat__k{font-size:clamp(5rem,13vw,9rem);line-height:.82;letter-spacing:-.03em;color:var(--ember);font-variant-numeric:lining-nums}
+.beat__k small{font-size:.4em;color:var(--slate);letter-spacing:0}
+
+/* the round trip, drawn as a route */
+.route{list-style:none;margin:2.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.route li{position:relative;text-align:center;padding:0 .5rem}
+.route li+li::before{
+  content:"";position:absolute;top:30px;right:calc(50% + 40px);width:calc(100% + 1rem - 80px);
+  border-top:2px dashed rgba(55,77,121,.35);
+}
+.route li+li::after{
+  content:"";position:absolute;top:25px;right:calc(50% + 36px);
+  border-left:9px solid rgba(55,77,121,.5);border-top:6px solid transparent;border-bottom:6px solid transparent;
+}
+.route__ico{
+  width:60px;height:60px;margin:0 auto .9rem;display:grid;place-items:center;border-radius:50%;
+  background:var(--shell);border:1px solid var(--hairline);color:var(--slate);
+}
+.route li:nth-child(2) .route__ico{background:var(--ink);border-color:var(--ink);color:var(--sage)}
+.route__ico svg{width:28px;height:28px}
+.route strong{display:block;font-weight:600;font-size:1.08rem}
+.route .d{display:block;color:var(--ink-60);font-size:.95rem;line-height:1.45}
+
+/* the cost */
+.costs{list-style:none;margin:0 0 1.8rem;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+@media (max-width:1100px){.costs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.costs li{
+  padding:1.4rem 1.3rem;background:var(--shell);border-top:2px solid var(--ember);border-radius:3px;
+  font-size:1.14rem;line-height:1.35;color:var(--ink);
+}
+.costs svg{display:block;width:28px;height:28px;color:var(--ember);margin-bottom:.8rem}
+
+/* our answer */
+.beat--answer{position:relative;overflow:hidden;background:var(--ink);border-radius:3px;padding:clamp(1.8rem,4vw,3rem)}
+.beat--answer::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(70% 120% at 100% 0%,rgba(0,158,175,.22),transparent 60%);
+}
+.beat--answer > *{position:relative}
+.beat--answer .beat__label{color:var(--teal)}
+.beat--answer .beat__label::after{background:rgba(148,182,183,.22)}
+.beat--answer .beat__lead{color:#F5F7F7}
+.outcomes{list-style:none;margin:1.8rem 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 2.2rem}
+.outcomes li{
+  display:grid;grid-template-columns:24px 1fr;gap:.8rem;padding-top:1rem;border-top:1px solid rgba(148,182,183,.2);
+  font-size:1.1rem;line-height:1.45;color:rgba(255,255,255,.88);
+}
+.outcomes svg{width:22px;height:22px;color:var(--teal);margin-top:.18rem}
+
+/* scroll reveal: each piece of the story surfaces as it rises into view */
+.js .surf{
+  opacity:0;transform:translateY(36px);filter:blur(6px);
+  transition:opacity 1.1s ease var(--d,0s),transform 1.4s cubic-bezier(.16,.8,.3,1) var(--d,0s),filter 1.1s ease var(--d,0s);
+}
+.surf.up{opacity:1;transform:none;filter:none}
+/* the route's dashed line draws itself toward each stop */
+.js .route li.surf::before{transform:scaleX(0);transform-origin:left center;transition:transform .9s ease calc(var(--d,0s) + .2s)}
+.js .route li.surf::after{opacity:0;transition:opacity .3s ease calc(var(--d,0s) + 1s)}
+.js .route li.up::before{transform:none}
+.js .route li.up::after{opacity:1}
+
+/* the mission closes the section: statement across the page, pillars side by side */
+.mission--after{
+  margin-top:clamp(4rem,9vw,6.5rem);padding-top:clamp(2.5rem,6vw,4rem);
+  background:linear-gradient(var(--hairline),var(--hairline)) no-repeat center top/calc(100% - 2 * var(--gutter)) 1px;
+}
+.mission--after .mission__quote{max-width:48rem;font-size:clamp(1.4rem,2.8vw,2.1rem)}
+.mission--after .pillars{grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem;margin-top:3rem}
 
 /* footnote superscripts: the sources open in a small card */
 .fn__btn{
@@ -288,56 +374,6 @@ section{scroll-margin-top:var(--nav-h)}
 .card h3{margin-bottom:.55rem}
 .card p{margin:0;color:var(--ink-60);font-size:.99rem}
 
-/* sourcing band */
-.band{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
-.band::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(80% 120% at 100% 0%,rgba(0,158,175,.22),transparent 60%);
-}
-.band .wrap{position:relative;z-index:1}
-.band h2{max-width:18ch}
-.band .lede{color:rgba(255,255,255,.74)}
-/* featured statistic */
-.figure{
-  display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(1.4rem,4vw,3rem);
-  align-items:center;margin-top:3.4rem;padding:clamp(1.8rem,4vw,2.6rem);
-  background:rgba(148,182,183,.07);border:1px solid rgba(148,182,183,.22);border-radius:3px;
-}
-.figure__k{
-  font-size:clamp(3.4rem,9vw,5.6rem);line-height:.9;color:var(--ember);
-  font-variant-numeric:lining-nums;letter-spacing:-.02em;white-space:nowrap;
-}
-.figure__k small{font-size:.42em;color:var(--sage);letter-spacing:0}
-.figure p{margin:0 0 .9rem;font-size:clamp(1.04rem,1.5vw,1.2rem);color:rgba(255,255,255,.82);line-height:1.55}
-.figure p:last-child{margin:0}
-.figure cite{
-  display:block;font-family:var(--sans);font-style:normal;font-size:.7rem;font-weight:500;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--sage);
-}
-.figure cite a{
-  color:var(--sage);text-decoration:underline;text-decoration-color:rgba(148,182,183,.45);
-  text-underline-offset:3px;transition:color .2s,text-decoration-color .2s;
-  display:inline-block;padding:.85rem 0;
-}
-.figure cite a:hover{color:#fff;text-decoration-color:#fff}
-@media (max-width:640px){
-  .figure{grid-template-columns:1fr;gap:1.1rem;text-align:left}
-}
-
-.stats{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:2.4rem;margin-top:3.6rem;padding-top:2.8rem;border-top:1px solid rgba(148,182,183,.24);
-}
-.stat .k{
-  display:block;font-size:clamp(2.2rem,4.4vw,3rem);line-height:1;color:var(--sage);
-  font-variant-numeric:lining-nums;margin-bottom:.6rem;
-}
-.stat .k span{color:var(--ember)}
-.stat .v{
-  font-family:var(--sans);font-size:.74rem;font-weight:400;letter-spacing:.15em;
-  text-transform:uppercase;color:rgba(255,255,255,.62);line-height:1.7;
-}
-
 /* contact */
 .contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(2rem,6vw,5rem);align-items:start}
 .form{display:grid;gap:1.15rem}
@@ -372,7 +408,8 @@ section{scroll-margin-top:var(--nav-h)}
 .foot__top{display:flex;flex-wrap:wrap;gap:1.6rem;justify-content:space-between;align-items:flex-end;
   padding-bottom:2.2rem;border-bottom:1px solid rgba(148,182,183,.18)}
 .foot__brand{display:flex;align-items:center;gap:1.4rem}
-.foot__seal{width:112px;height:112px;flex:none}
+.foot__seal{width:140px;height:140px;flex:none}
+.foot__seal--small{display:none}
 .foot__name{font-size:2.3rem;font-weight:500;line-height:.9;color:#F5F7F7}
 .foot__sub{
   font-family:var(--sans);font-size:.72rem;font-weight:500;letter-spacing:.5em;
@@ -387,16 +424,18 @@ section{scroll-margin-top:var(--nav-h)}
   font-family:var(--sans);font-size:.76rem;letter-spacing:.04em}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .rv{opacity:1;transform:none;transition:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .js .surf,.js .route li.surf::before,.js .route li.surf::after{opacity:1;transform:none;filter:none;transition:none}
   *{animation-duration:.001ms!important;transition-duration:.001ms!important}
 }
 
 @media (max-width:880px){
-  .mission,.contact,.story{grid-template-columns:1fr}
+  .mission,.contact{grid-template-columns:1fr}
+  .mission--after .pillars{grid-template-columns:1fr;gap:1.6rem}
   body.nav-open{overflow:hidden}
 }
 @media (max-width:620px){
@@ -404,6 +443,20 @@ section{scroll-margin-top:var(--nav-h)}
   .hero__stamps{display:grid;gap:.55rem;justify-items:start}
   .hero__stamps li{border:0;margin:0;padding:0}
   .foot__top{align-items:flex-start}
+
+  /* story beats stack; the route runs top to bottom */
+  .beat--stat{grid-template-columns:1fr;gap:1rem}
+  .outcomes{grid-template-columns:1fr}
+  .route{grid-template-columns:1fr;gap:1.4rem}
+  .route li{display:grid;grid-template-columns:60px 1fr;gap:1rem;align-items:center;text-align:left;padding:0}
+  .route__ico{margin:0}
+  .route li+li::before{top:-1.4rem;left:29px;right:auto;width:0;height:1.4rem;border-top:0;border-left:2px dashed rgba(55,77,121,.35)}
+  .route li+li::after{display:none}
+  .js .route li.surf::before{transform:scaleY(0);transform-origin:center top}
+  .js .route li.up::before{transform:none}
+  .costs{grid-template-columns:1fr}
+  .costs li{display:grid;grid-template-columns:28px 1fr;gap:.9rem;align-items:center;padding:1.1rem 1.2rem}
+  .costs svg{margin:0}
 
   /* tighter vertical rhythm, full-width actions, no forced heading breaks */
   .sec{padding:3.6rem 0}
@@ -413,13 +466,15 @@ section{scroll-margin-top:var(--nav-h)}
   .btnrow .btn{width:100%}
   .form .btn{justify-self:stretch;width:100%}
   .entry{margin-top:1.8rem;padding:1.4rem 1.2rem}
+  .entry.entry--epigraph{margin-top:0;padding:0}
   .grid3{gap:1rem;margin-top:2.2rem}
   .card{padding:1.7rem 1.4rem}
-  .figure{margin-top:2.4rem}
-  .stats{gap:1.8rem;margin-top:2.6rem;padding-top:2.2rem}
   .brand__seal{width:38px;height:38px}
   .brand__name{font-size:1.45rem}
-  .foot__seal{width:88px;height:88px}
+  /* the ring text is unreadable this small, so phones get the brand sheet's compact seal */
+  .foot__seal{display:none}
+  .foot__seal--small{display:block;width:60px;height:60px}
+  .foot__brand{align-items:flex-start;gap:1rem}
   .foot__name{font-size:1.9rem}
   .foot__bottom{flex-direction:column}
 }
@@ -456,7 +511,6 @@ section{scroll-margin-top:var(--nav-h)}
     <ul class="nav__links" id="menu">
       <li><a href="#mission">Mission</a></li>
       <li><a href="#capabilities">Capabilities</a></li>
-      <li><a href="#sourcing">Sourcing</a></li>
       <li><a class="nav__cta" href="#contact">Work With Us</a></li>
     </ul>
   </div>
@@ -495,44 +549,85 @@ section{scroll-margin-top:var(--nav-h)}
 
 <!-- ============ MISSION ============ -->
 <section class="sec" id="mission">
-  <div class="wrap mission rv">
-    <div>
-      <p class="eyebrow">Our Mission</p>
-      <h2>Food that never <br>crosses an ocean.</h2>
+  <div class="wrap">
+    <div class="entry entry--epigraph surf">
+      <div class="entry__head">
+        <span class="entry__word">fresh&middot;<b>et</b></span>
+        <span class="entry__ipa">| \&#8202;ˈfre-shət&#8202;\</span>
+      </div>
+      <p class="entry__pos">noun &nbsp;<i>often attributive</i></p>
+      <p class="entry__def"><span>:</span> a great rise or overflowing, a swelling quantity, an influx</p>
+      <p class="entry__note">The spring surge that carries a river to the sea — and the name we work under.</p>
+    </div>
 
-      <div class="entry">
-        <div class="entry__head">
-          <span class="entry__word">fresh&middot;<b>et</b></span>
-          <span class="entry__ipa">| \&#8202;ˈfre-shət&#8202;\</span>
-        </div>
-        <p class="entry__pos">noun &nbsp;<i>often attributive</i></p>
-        <p class="entry__def"><span>:</span> a great rise or overflowing, a swelling quantity, an influx</p>
-        <p class="entry__note">The spring surge that carries a river to the sea — and the name we work under.</p>
+    <p class="eyebrow surf">Our Story</p>
+    <h2 class="surf" style="--d:.1s">Food that never <br>crosses an ocean.</h2>
+
+    <div class="storyline">
+      <div class="beat beat--stat">
+        <div class="beat__k surf"><span class="count" data-to="80">80</span><small>%</small></div>
+        <p class="beat__lead surf" style="--d:.25s">Despite controlling the world&rsquo;s largest Exclusive Economic Zone&mdash;larger than the landmass of all 50 states combined&mdash;the United States imports roughly 80% of the seafood Americans consume.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn1" aria-label="Sources for note 1">1</button><span class="fn__pop" id="fn1" role="note" hidden><span class="fn__head">Sources</span><span class="fn__note">The U.S. Exclusive Economic Zone is the world&rsquo;s largest, about 3.4 million square nautical miles, larger than the combined land area of all 50 states.</span><a href="https://archive.oceanexplorer.noaa.gov/facts/useez.html" target="_blank" rel="noopener">NOAA Ocean Exploration: How big is the U.S. Exclusive Economic Zone?</a><a href="https://www.congress.gov/crs-product/R47912" target="_blank" rel="noopener">Congressional Research Service, R47912</a><a href="https://www.fisheries.noaa.gov/national/sustainable-fisheries/fisheries-united-states#us-seafood-consumption-and-import-reliance" target="_blank" rel="noopener">NOAA Fisheries: U.S. seafood consumption and import reliance</a><a href="https://www.usda.gov/seafood" target="_blank" rel="noopener">USDA: Seafood</a><a href="https://ers.usda.gov/data-products/charts-of-note/108472" target="_blank" rel="noopener">USDA Economic Research Service: Chart of Note</a></span></p>
+      </div>
+
+      <div class="beat">
+        <p class="beat__label surf">01 &middot; The round trip</p>
+        <p class="beat__text surf" style="--d:.12s">A major driver is limited domestic processing capacity. U.S. watermen often sell their harvests to overseas processors (frequently in Asia), who freeze, fillet, or further process the product and ship it back to the American market.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn2" aria-label="Sources for note 2">2</button><span class="fn__pop" id="fn2" role="note" hidden><span class="fn__head">Sources</span><a href="https://sustainablefisheries-uw.org/how-much-seafood-is-imported/" target="_blank" rel="noopener">Sustainable Fisheries UW: How much seafood is imported?</a><a href="https://www.pnas.org/doi/10.1073/pnas.1905650116" target="_blank" rel="noopener">Gephart, Froehlich &amp; Branch, PNAS (2019)</a><a href="https://afdf.org/asset/68f904e82f76b/Alaska-Seafood-Re-Shoring-Analysis-8.1.25.pdf" target="_blank" rel="noopener">Alaska Fisheries Development Foundation: Alaska Seafood Re-Shoring Analysis (2025, PDF)</a></span></p>
+        <ol class="route">
+          <li class="surf" style="--d:0.00s"><span class="route__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11M12 4.5l5.5 7.5H12"/><path d="M4 14h16l-2.2 3.6H6.2z"/><path d="M2 20.5c1.7-.9 3.3-.9 5 0s3.3.9 5 0 3.3-.9 5 0 3.3.9 5 0"/></svg></span><span><strong>Harvested here</strong><span class="d">by U.S. watermen</span></span></li>
+          <li class="surf" style="--d:0.35s"><span class="route__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20.5V10l5 3v-3l5 3V7l8 4v9.5z"/><path d="M2 20.5h20M7 17h2M12 17h2M17 17h2"/></svg></span><span><strong>Processed overseas</strong><span class="d">frozen, filleted, or further processed</span></span></li>
+          <li class="surf" style="--d:0.70s"><span class="route__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.4 11H5.4z"/><path d="M8.5 9 12 4.5 15.5 9M9.5 13v3.5M14.5 13v3.5"/></svg></span><span><strong>Shipped back</strong><span class="d">to the American market</span></span></li>
+        </ol>
+      </div>
+
+      <div class="beat">
+        <p class="beat__label surf">02 &middot; The cost</p>
+        <ul class="costs">
+          <li class="surf" style="--d:0.00s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18.5a4.2 4.2 0 0 1-.4-8.4A6 6 0 0 1 18.2 9a4.75 4.75 0 0 1-.7 9.5z"/><path d="M9.5 14.5h5"/></svg>Adds unnecessary carbon emissions</li>
+          <li class="surf" style="--d:0.12s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14.5V5a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0z"/><path d="M12 9.5v6.5"/><path d="M17.5 6h2.5M17.5 9h2.5"/></svg>Increases the risk of spoilage and the loss of texture and flavor</li>
+          <li class="surf" style="--d:0.24s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v11M8 10.5l4 4 4-4"/><path d="M4.5 16v4h15v-4"/></svg>Exports jobs and value</li>
+          <li class="surf" style="--d:0.36s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 11h20M5 11v9M12 11v9M19 11v9"/><path d="M2 16.5c1.7-.9 3.3-.9 5 0s3.3.9 5 0 3.3-.9 5 0 3.3.9 5 0"/></svg>Undercuts domestic dockside economies</li>
+        </ul>
+        <p class="beat__text surf" style="--d:.12s">The number of commercial watermen able to make a viable living has fallen sharply across the nation, pressured by import competition and the loss of local processing infrastructure.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn3" aria-label="Sources for note 3">3</button><span class="fn__pop" id="fn3" role="note" hidden><span class="fn__head">Sources</span><a href="https://www.seafoodsource.com/news/supply-trade/alaska-s-commercial-fishing-workforce-continues-to-shrink" target="_blank" rel="noopener">SeafoodSource: Alaska&rsquo;s commercial fishing workforce continues to shrink</a><a href="https://wtop.com/maryland/2024/09/claws-and-effect-some-crab-predators-are-multiplying-others-are-dwindling/" target="_blank" rel="noopener">WTOP: Claws and effect (2024)</a></span></p>
+      </div>
+
+      <div class="beat beat--answer">
+        <p class="beat__label surf">03 &middot; Our answer</p>
+        <p class="beat__lead surf" style="--d:.15s">Freshet Foods is building the processing infrastructure to reverse this cycle.</p>
+        <ul class="outcomes">
+          <li class="surf" style="--d:0.00s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg><span>Keep the value chain at home</span></li>
+          <li class="surf" style="--d:0.12s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg><span>Revitalize coastal docks</span></li>
+          <li class="surf" style="--d:0.24s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg><span>Cut needless shipping</span></li>
+          <li class="surf" style="--d:0.36s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg><span>Rebuild the foundation for American food independence and resilience</span></li>
+        </ul>
       </div>
     </div>
+  </div>
+
+  <div class="wrap mission--after">
+    <p class="eyebrow surf">Our Mission</p>
     <div>
-      <blockquote class="mission__quote">
+      <blockquote class="mission__quote surf" style="--d:.1s">
         To process, preserve, and distribute the finest domestic harvests. We exist to
         revitalize coastal communities, restore our native ecosystems, and prove that the highest
         quality food <em>doesn't need to cross an ocean.</em>
       </blockquote>
 
       <ul class="pillars">
-        <li>
+        <li class="surf" style="--d:0.00s">
           <span class="n">01</span>
           <div>
             <strong>Revitalize coastal communities</strong>
             <p>Processing on the waterfront keeps jobs, wages, and dockside business in the towns that land the catch.</p>
           </div>
         </li>
-        <li>
+        <li class="surf" style="--d:0.15s">
           <span class="n">02</span>
           <div>
             <strong>Restore native ecosystems</strong>
             <p>We build markets for the species and crops our waters and soils need harvested, turning ecological pressure into a product line.</p>
           </div>
         </li>
-        <li>
+        <li class="surf" style="--d:0.30s">
           <span class="n">03</span>
           <div>
             <strong>Shorten the supply chain</strong>
@@ -540,27 +635,6 @@ section{scroll-margin-top:var(--nav-h)}
           </div>
         </li>
       </ul>
-    </div>
-  </div>
-
-  <div class="wrap story rv">
-    <div>
-      <p class="eyebrow">Our Story</p>
-    </div>
-    <div>
-      <p class="story__lead">Despite controlling the world&rsquo;s largest Exclusive Economic Zone&mdash;larger than the landmass of all 50 states combined&mdash;the United States imports roughly 80% of the seafood Americans consume.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn1" aria-label="Sources for note 1">1</button><span class="fn__pop" id="fn1" role="note" hidden><span class="fn__head">Sources</span><span class="fn__note">The U.S. Exclusive Economic Zone is the world&rsquo;s largest, about 3.4 million square nautical miles, larger than the combined land area of all 50 states.</span><a href="https://archive.oceanexplorer.noaa.gov/facts/useez.html" target="_blank" rel="noopener">NOAA Ocean Exploration: How big is the U.S. Exclusive Economic Zone?</a><a href="https://www.congress.gov/crs-product/R47912" target="_blank" rel="noopener">Congressional Research Service, R47912</a><a href="https://www.usda.gov/seafood" target="_blank" rel="noopener">USDA: Seafood</a><a href="https://ers.usda.gov/data-products/charts-of-note/108472" target="_blank" rel="noopener">USDA Economic Research Service: Chart of Note</a></span></p>
-      <p class="story__body">
-        A major driver is limited domestic processing capacity. U.S. watermen often sell their harvests
-        to overseas processors (frequently in Asia), who freeze, fillet, or further process the product
-        and ship it back to the American market.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn2" aria-label="Sources for note 2">2</button><span class="fn__pop" id="fn2" role="note" hidden><span class="fn__head">Sources</span><a href="https://sustainablefisheries-uw.org/how-much-seafood-is-imported/" target="_blank" rel="noopener">Sustainable Fisheries UW: How much seafood is imported?</a><a href="https://www.pnas.org/doi/10.1073/pnas.1905650116" target="_blank" rel="noopener">Gephart, Froehlich &amp; Branch, PNAS (2019)</a><a href="https://afdf.org/asset/68f904e82f76b/Alaska-Seafood-Re-Shoring-Analysis-8.1.25.pdf" target="_blank" rel="noopener">Alaska Fisheries Development Foundation: Alaska Seafood Re-Shoring Analysis (2025, PDF)</a></span>
-        This round-trip adds unnecessary carbon emissions, exports jobs and value, and undercuts domestic
-        dockside economies. The number of commercial watermen able to make a viable living has fallen
-        sharply across the nation, pressured by import competition and the loss of local processing
-        infrastructure.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn3" aria-label="Sources for note 3">3</button><span class="fn__pop" id="fn3" role="note" hidden><span class="fn__head">Sources</span><a href="https://www.seafoodsource.com/news/supply-trade/alaska-s-commercial-fishing-workforce-continues-to-shrink" target="_blank" rel="noopener">SeafoodSource: Alaska&rsquo;s commercial fishing workforce continues to shrink</a><a href="https://wtop.com/maryland/2024/09/claws-and-effect-some-crab-predators-are-multiplying-others-are-dwindling/" target="_blank" rel="noopener">WTOP: Claws and effect (2024)</a></span>
-        Freshet Foods is building the processing infrastructure to reverse this cycle: keep the value
-        chain at home, revitalize coastal docks, cut needless shipping, and rebuild the foundation for
-        American food independence and resilience.
-      </p>
     </div>
   </div>
 </section>
@@ -623,50 +697,6 @@ section{scroll-margin-top:var(--nav-h)}
         <h3>Food Safety</h3>
         <p>HACCP-based controls, documented sanitation, and third-party audit readiness built into the plant — not bolted on after the fact.</p>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SOURCING BAND ============ -->
-<section class="sec band" id="sourcing">
-  <div class="wrap rv">
-    <p class="eyebrow">Sourcing</p>
-    <h2>Defending the domestic supply.</h2>
-    <p class="lede" style="margin-top:1.2rem">
-      Most of the seafood on an American plate was caught, processed, and frozen somewhere
-      else. That's a fragile way to feed a country. We're building the other option — one
-      dock, one field, one contract at a time.
-    </p>
-
-    <figure class="figure">
-      <div class="figure__k">~80<small>%</small></div>
-      <figcaption>
-        <p>
-          Despite having the largest Exclusive Economic Zone in the world, the United States
-          relies heavily on foreign supply chains — roughly <strong>80% of the seafood
-          consumed in the U.S. is imported.</strong>
-        </p>
-        <cite>
-          Source:
-          <a href="https://www.fisheries.noaa.gov/national/sustainable-fisheries/fisheries-united-states#us-seafood-consumption-and-import-reliance" target="_blank" rel="noopener">NOAA Fisheries</a>
-          &middot; USDA
-        </cite>
-      </figcaption>
-    </figure>
-
-    <div class="stats">
-      <div class="stat">
-        <span class="k">100<span>%</span></span>
-        <span class="v">Domestically<br>sourced inputs</span>
-      </div>
-      <div class="stat">
-        <span class="k">Lot<span>-level</span></span>
-        <span class="v">Traceability from<br>intake to pallet</span>
-      </div>
-      <div class="stat">
-        <span class="k">Year<span>-round</span></span>
-        <span class="v">Standing contracts<br>for local producers</span>
-      </div>
     </div>
   </div>
 </section>
@@ -770,6 +800,17 @@ section{scroll-margin-top:var(--nav-h)}
             <path d="M30 148 C 50 138, 70 138, 90 148 S 130 158, 170 146" stroke="#009EAF" stroke-width="5" stroke-linecap="round" opacity=".45"/>
           </g>
         </svg>
+        <svg class="foot__seal foot__seal--small" viewBox="0 0 100 100" role="img" aria-label="Freshet Foods seal">
+          <defs><clipPath id="sealFootSm"><circle cx="50" cy="50" r="48"/></clipPath></defs>
+          <g clip-path="url(#sealFootSm)">
+            <rect width="100" height="100" fill="#0F1624"/>
+            <circle cx="50" cy="56" r="22" fill="#D85900"/>
+            <rect x="0" y="56" width="100" height="44" fill="#0F1624"/>
+            <path d="M4 60 C 20 50, 34 50, 50 60 S 80 70, 96 58" stroke="#009EAF" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M4 76 C 20 66, 34 66, 50 76 S 80 86, 96 74" stroke="#009EAF" stroke-width="7" fill="none" stroke-linecap="round" opacity=".6"/>
+          </g>
+          <circle cx="50" cy="50" r="48" fill="none" stroke="#374D79" stroke-width="3"/>
+        </svg>
         <div>
           <div class="foot__name">Freshet</div>
           <div class="foot__sub">Foods</div>
@@ -779,7 +820,6 @@ section{scroll-margin-top:var(--nav-h)}
       <ul class="foot__nav">
         <li><a href="#mission">Mission</a></li>
         <li><a href="#capabilities">Capabilities</a></li>
-        <li><a href="#sourcing">Sourcing</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -832,6 +872,35 @@ section{scroll-margin-top:var(--nav-h)}
       });
     }, { threshold:0, rootMargin:'0px 0px -8% 0px' });
     items.forEach(function(el){ io.observe(el); });
+  }
+
+  /* --- story: each piece surfaces as it scrolls into view; the 80% counts up --- */
+  function countUp(el){
+    var to = +el.getAttribute('data-to'), t0 = null;
+    function step(t){
+      if (!t0) t0 = t;
+      var k = Math.min(1, (t - t0) / 1600);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(step);
+    }
+    el.textContent = '0';
+    requestAnimationFrame(step);
+  }
+  var surfs = document.querySelectorAll('.surf');
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (calm || !('IntersectionObserver' in window)){
+    surfs.forEach(function(el){ el.classList.add('up'); });
+  } else {
+    var so = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        en.target.classList.add('up');
+        var c = en.target.querySelector('.count');
+        if (c) countUp(c);
+        so.unobserve(en.target);
+      });
+    }, { rootMargin:'0px 0px -12% 0px' });
+    surfs.forEach(function(el){ so.observe(el); });
   }
 
   /* --- footnotes: each superscript opens its sources --- */
