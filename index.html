@@ -337,6 +337,12 @@ section{scroll-margin-top:var(--nav-h)}
   background:none;border:0;border-radius:2px;cursor:pointer;
 }
 .fn__btn::after{content:"";position:absolute;inset:-14px -10px}
+/* a defined term: dotted underline, opens its definition like a footnote */
+.term{
+  font:inherit;color:inherit;letter-spacing:inherit;background:none;border:0;padding:0;margin:0;cursor:help;
+  text-decoration:underline dotted var(--teal-deep);text-decoration-thickness:2px;text-underline-offset:.2em;
+}
+.term:hover,.term[aria-expanded="true"]{color:var(--teal-deep)}
 .fn__btn:hover,.fn__btn[aria-expanded="true"]{color:var(--paper);background:var(--teal-deep)}
 .fn__pop{
   position:fixed;z-index:70;display:block;width:min(23rem,calc(100vw - 32px));
@@ -566,7 +572,7 @@ section{scroll-margin-top:var(--nav-h)}
     <div class="storyline">
       <div class="beat beat--stat">
         <div class="beat__k surf"><span class="count" data-to="80">80</span><small>%</small></div>
-        <p class="beat__lead surf" style="--d:.25s">Despite controlling the world&rsquo;s largest Exclusive Economic Zone&mdash;larger than the landmass of all 50 states combined&mdash;the United States imports roughly 80% of the seafood Americans consume.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn1" aria-label="Sources for note 1">1</button><span class="fn__pop" id="fn1" role="note" hidden><span class="fn__head">Sources</span><span class="fn__note">The U.S. Exclusive Economic Zone is the world&rsquo;s largest, about 3.4 million square nautical miles, larger than the combined land area of all 50 states.</span><a href="https://archive.oceanexplorer.noaa.gov/facts/useez.html" target="_blank" rel="noopener">NOAA Ocean Exploration: How big is the U.S. Exclusive Economic Zone?</a><a href="https://www.congress.gov/crs-product/R47912" target="_blank" rel="noopener">Congressional Research Service, R47912</a><a href="https://www.fisheries.noaa.gov/national/sustainable-fisheries/fisheries-united-states#us-seafood-consumption-and-import-reliance" target="_blank" rel="noopener">NOAA Fisheries: U.S. seafood consumption and import reliance</a><a href="https://www.usda.gov/seafood" target="_blank" rel="noopener">USDA: Seafood</a><a href="https://ers.usda.gov/data-products/charts-of-note/108472" target="_blank" rel="noopener">USDA Economic Research Service: Chart of Note</a></span></p>
+        <p class="beat__lead surf" style="--d:.25s">Despite controlling the world&rsquo;s largest <button class="term" type="button" aria-expanded="false" aria-controls="def-eez">Exclusive Economic Zone</button><span class="fn__pop" id="def-eez" role="note" hidden><span class="fn__head">Definition</span><span class="fn__note">The ocean waters, reaching up to 200 nautical miles from shore, where a nation holds the sole right to fish and use the resources.</span></span>&mdash;larger than the landmass of all 50 states combined&mdash;the United States imports roughly 80% of the seafood Americans consume.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn1" aria-label="Sources for note 1">1</button><span class="fn__pop" id="fn1" role="note" hidden><span class="fn__head">Sources</span><span class="fn__note">The U.S. Exclusive Economic Zone is the world&rsquo;s largest, about 3.4 million square nautical miles, larger than the combined land area of all 50 states.</span><a href="https://archive.oceanexplorer.noaa.gov/facts/useez.html" target="_blank" rel="noopener">NOAA Ocean Exploration: How big is the U.S. Exclusive Economic Zone?</a><a href="https://www.congress.gov/crs-product/R47912" target="_blank" rel="noopener">Congressional Research Service, R47912</a><a href="https://www.fisheries.noaa.gov/national/sustainable-fisheries/fisheries-united-states#us-seafood-consumption-and-import-reliance" target="_blank" rel="noopener">NOAA Fisheries: U.S. seafood consumption and import reliance</a><a href="https://www.usda.gov/seafood" target="_blank" rel="noopener">USDA: Seafood</a><a href="https://ers.usda.gov/data-products/charts-of-note/108472" target="_blank" rel="noopener">USDA Economic Research Service: Chart of Note</a></span></p>
       </div>
 
       <div class="beat">
@@ -911,17 +917,42 @@ section{scroll-margin-top:var(--nav-h)}
     openNote.pop.hidden = true;
     openNote = null;
   }
-  document.querySelectorAll('.fn__btn').forEach(function(btn){
+  function openFor(btn){
+    if (openNote && openNote.btn === btn) return;
+    closeNote();
     var pop = document.getElementById(btn.getAttribute('aria-controls'));
+    pop.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    openNote = { btn:btn, pop:pop, pinned:false };
+    placeNote();
+  }
+  var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var noteTimer = null;
+  function soon(fn, ms){ clearTimeout(noteTimer); noteTimer = setTimeout(fn, ms); }
+
+  document.querySelectorAll('.fn__btn, .term').forEach(function(btn){
+    var pop = document.getElementById(btn.getAttribute('aria-controls'));
+    /* click / tap / Enter: open and keep it open (a second click closes it) */
     btn.addEventListener('click', function(e){
       e.stopPropagation();
-      var same = openNote && openNote.btn === btn;
-      closeNote();
-      if (same) return;
-      pop.hidden = false;
-      btn.setAttribute('aria-expanded', 'true');
-      openNote = { btn:btn, pop:pop };
-      placeNote();
+      clearTimeout(noteTimer);
+      if (openNote && openNote.btn === btn){
+        if (openNote.pinned) closeNote(); else openNote.pinned = true;
+        return;
+      }
+      openFor(btn);
+      openNote.pinned = true;
+    });
+    /* hover: open after a beat; a short grace period lets the pointer travel into the card to click a source */
+    if (!canHover) return;
+    btn.addEventListener('mouseenter', function(){ soon(function(){ openFor(btn); }, 120); });
+    [btn, pop].forEach(function(el){
+      el.addEventListener('mouseenter', function(){
+        if (openNote && openNote.btn === btn) clearTimeout(noteTimer);
+      });
+      el.addEventListener('mouseleave', function(){
+        soon(function(){ if (openNote && openNote.btn === btn && !openNote.pinned) closeNote(); }, 280);
+      });
     });
   });
   /* keep the card beside its number; close it once the number leaves the screen */
