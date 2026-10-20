@@ -236,6 +236,41 @@ section{scroll-margin-top:var(--nav-h)}
 .pillars strong{display:block;font-weight:600;font-size:1.06rem;margin-bottom:.15rem}
 .pillars p{margin:0;color:var(--ink-60);font-size:.98rem;line-height:1.6}
 
+/* our story (inside the mission section) */
+.story{
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2rem,6vw,5rem);align-items:start;
+  margin-top:clamp(3.5rem,8vw,6rem);padding-top:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--hairline);
+}
+.story__lead{font-size:clamp(1.25rem,2.2vw,1.6rem);line-height:1.45;color:var(--ink);margin:0 0 1.4rem}
+.story__body{font-size:1.06rem;line-height:1.7;color:var(--ink-80);margin:0}
+
+/* footnote superscripts: the sources open in a small card */
+.fn__btn{
+  position:relative;vertical-align:super;line-height:0;margin-left:.1em;padding:0 .15em;
+  font-family:var(--sans);font-size:.62em;font-weight:600;color:var(--teal-deep);
+  background:none;border:0;border-radius:2px;cursor:pointer;
+}
+.fn__btn::after{content:"";position:absolute;inset:-14px -10px}
+.fn__btn:hover,.fn__btn[aria-expanded="true"]{color:var(--paper);background:var(--teal-deep)}
+.fn__pop{
+  position:fixed;z-index:70;display:block;width:min(23rem,calc(100vw - 32px));
+  background:var(--ink);color:rgba(255,255,255,.82);border-top:2px solid var(--teal);border-radius:3px;
+  padding:1rem 1.15rem .6rem;box-shadow:0 18px 44px -14px rgba(15,22,36,.55);
+  font-family:var(--serif);font-size:.92rem;line-height:1.5;text-align:left;
+}
+.fn__pop[hidden]{display:none}
+.fn__head{
+  display:block;font-family:var(--sans);font-size:.66rem;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--sage);margin-bottom:.45rem;
+}
+.fn__note{display:block;margin-bottom:.35rem}
+.fn__pop a{
+  display:block;padding:.5rem 0;border-top:1px solid rgba(148,182,183,.16);
+  color:#F5F7F7;text-decoration:underline;text-decoration-color:rgba(148,182,183,.45);text-underline-offset:3px;
+}
+.fn__pop a:first-of-type{border-top:0}
+.fn__pop a:hover{color:var(--sage)}
+
 /* capabilities */
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1.5rem;margin-top:3.2rem}
 .card{
@@ -361,7 +396,7 @@ section{scroll-margin-top:var(--nav-h)}
 }
 
 @media (max-width:880px){
-  .mission,.contact{grid-template-columns:1fr}
+  .mission,.contact,.story{grid-template-columns:1fr}
   body.nav-open{overflow:hidden}
 }
 @media (max-width:620px){
@@ -478,7 +513,7 @@ section{scroll-margin-top:var(--nav-h)}
     <div>
       <blockquote class="mission__quote">
         To process, preserve, and distribute the finest domestic harvests. We exist to
-        empower local producers, restore our native ecosystems, and prove that the highest
+        revitalize coastal communities, restore our native ecosystems, and prove that the highest
         quality food <em>doesn't need to cross an ocean.</em>
       </blockquote>
 
@@ -486,8 +521,8 @@ section{scroll-margin-top:var(--nav-h)}
         <li>
           <span class="n">01</span>
           <div>
-            <strong>Empower local producers</strong>
-            <p>Fair, standing contracts with the farmers, growers, and watermen in our own backyard — so a good season pays like one.</p>
+            <strong>Revitalize coastal communities</strong>
+            <p>Processing on the waterfront keeps jobs, wages, and dockside business in the towns that land the catch.</p>
           </div>
         </li>
         <li>
@@ -505,6 +540,27 @@ section{scroll-margin-top:var(--nav-h)}
           </div>
         </li>
       </ul>
+    </div>
+  </div>
+
+  <div class="wrap story rv">
+    <div>
+      <p class="eyebrow">Our Story</p>
+    </div>
+    <div>
+      <p class="story__lead">Despite controlling the world&rsquo;s largest Exclusive Economic Zone&mdash;larger than the landmass of all 50 states combined&mdash;the United States imports roughly 80% of the seafood Americans consume.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn1" aria-label="Sources for note 1">1</button><span class="fn__pop" id="fn1" role="note" hidden><span class="fn__head">Sources</span><span class="fn__note">The U.S. Exclusive Economic Zone is the world&rsquo;s largest, about 3.4 million square nautical miles, larger than the combined land area of all 50 states.</span><a href="https://archive.oceanexplorer.noaa.gov/facts/useez.html" target="_blank" rel="noopener">NOAA Ocean Exploration: How big is the U.S. Exclusive Economic Zone?</a><a href="https://www.congress.gov/crs-product/R47912" target="_blank" rel="noopener">Congressional Research Service, R47912</a><a href="https://www.usda.gov/seafood" target="_blank" rel="noopener">USDA: Seafood</a><a href="https://ers.usda.gov/data-products/charts-of-note/108472" target="_blank" rel="noopener">USDA Economic Research Service: Chart of Note</a></span></p>
+      <p class="story__body">
+        A major driver is limited domestic processing capacity. U.S. watermen often sell their harvests
+        to overseas processors (frequently in Asia), who freeze, fillet, or further process the product
+        and ship it back to the American market.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn2" aria-label="Sources for note 2">2</button><span class="fn__pop" id="fn2" role="note" hidden><span class="fn__head">Sources</span><a href="https://sustainablefisheries-uw.org/how-much-seafood-is-imported/" target="_blank" rel="noopener">Sustainable Fisheries UW: How much seafood is imported?</a><a href="https://www.pnas.org/doi/10.1073/pnas.1905650116" target="_blank" rel="noopener">Gephart, Froehlich &amp; Branch, PNAS (2019)</a><a href="https://afdf.org/asset/68f904e82f76b/Alaska-Seafood-Re-Shoring-Analysis-8.1.25.pdf" target="_blank" rel="noopener">Alaska Fisheries Development Foundation: Alaska Seafood Re-Shoring Analysis (2025, PDF)</a></span>
+        This round-trip adds unnecessary carbon emissions, exports jobs and value, and undercuts domestic
+        dockside economies. The number of commercial watermen able to make a viable living has fallen
+        sharply across the nation, pressured by import competition and the loss of local processing
+        infrastructure.<button class="fn__btn" type="button" aria-expanded="false" aria-controls="fn3" aria-label="Sources for note 3">3</button><span class="fn__pop" id="fn3" role="note" hidden><span class="fn__head">Sources</span><a href="https://www.seafoodsource.com/news/supply-trade/alaska-s-commercial-fishing-workforce-continues-to-shrink" target="_blank" rel="noopener">SeafoodSource: Alaska&rsquo;s commercial fishing workforce continues to shrink</a><a href="https://wtop.com/maryland/2024/09/claws-and-effect-some-crab-predators-are-multiplying-others-are-dwindling/" target="_blank" rel="noopener">WTOP: Claws and effect (2024)</a></span>
+        Freshet Foods is building the processing infrastructure to reverse this cycle: keep the value
+        chain at home, revitalize coastal docks, cut needless shipping, and rebuild the foundation for
+        American food independence and resilience.
+      </p>
     </div>
   </div>
 </section>
@@ -777,6 +833,46 @@ section{scroll-margin-top:var(--nav-h)}
     }, { threshold:0, rootMargin:'0px 0px -8% 0px' });
     items.forEach(function(el){ io.observe(el); });
   }
+
+  /* --- footnotes: each superscript opens its sources --- */
+  var openNote = null;
+  function closeNote(){
+    if (!openNote) return;
+    openNote.btn.setAttribute('aria-expanded', 'false');
+    openNote.pop.hidden = true;
+    openNote = null;
+  }
+  document.querySelectorAll('.fn__btn').forEach(function(btn){
+    var pop = document.getElementById(btn.getAttribute('aria-controls'));
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var same = openNote && openNote.btn === btn;
+      closeNote();
+      if (same) return;
+      pop.hidden = false;
+      btn.setAttribute('aria-expanded', 'true');
+      openNote = { btn:btn, pop:pop };
+      placeNote();
+    });
+  });
+  /* keep the card beside its number; close it once the number leaves the screen */
+  function placeNote(){
+    if (!openNote) return;
+    var r = openNote.btn.getBoundingClientRect(), pop = openNote.pop;
+    if (r.bottom < 0 || r.top > window.innerHeight){ closeNote(); return; }
+    var w = pop.offsetWidth, h = pop.offsetHeight, top = r.bottom + 10;
+    if (top + h > window.innerHeight - 16) top = Math.max(16, r.top - h - 10);
+    pop.style.left = Math.max(16, Math.min(r.left - 24, window.innerWidth - w - 16)) + 'px';
+    pop.style.top = top + 'px';
+  }
+  document.addEventListener('click', function(e){
+    if (openNote && !openNote.pop.contains(e.target)) closeNote();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && openNote){ var b = openNote.btn; closeNote(); b.focus(); }
+  });
+  window.addEventListener('scroll', placeNote, { passive:true });
+  window.addEventListener('resize', placeNote);
 
   /* --- inquiry form: compose an email to the site owner --- */
   var form = document.getElementById('inquiry');
