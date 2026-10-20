@@ -161,9 +161,6 @@ p{margin:0 0 1.1em}
 }
 .hero__bg svg{position:absolute;left:0;right:0;bottom:-1px;width:130%;min-width:900px;opacity:.5}
 .hero .wrap{position:relative}
-.hero__grid{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(2rem,5vw,4.5rem)}
-/* logo 2b: fish avatar */
-.hero__fish{width:clamp(200px,24vw,300px);height:auto;filter:drop-shadow(0 24px 40px rgba(0,0,0,.35))}
 .hero h1{
   font-size:clamp(2.9rem,7.4vw,5.4rem);letter-spacing:-.022em;max-width:16ch;
   margin-bottom:1.6rem;
@@ -365,8 +362,6 @@ section{scroll-margin-top:var(--nav-h)}
 
 @media (max-width:880px){
   .mission,.contact{grid-template-columns:1fr}
-  .hero__grid{grid-template-columns:1fr;gap:0}
-  .hero__fish{order:-1;width:96px;margin-bottom:1.8rem}
   body.nav-open{overflow:hidden}
 }
 @media (max-width:620px){
@@ -443,8 +438,7 @@ section{scroll-margin-top:var(--nav-h)}
     </svg>
   </div>
 
-  <div class="wrap hero__grid">
-   <div>
+  <div class="wrap">
     <p class="eyebrow">Freshet Foods &middot; Domestic Food Processing</p>
     <h1>From American Soil <em>and</em> Shore.</h1>
     <div class="hero__rule"></div>
@@ -461,29 +455,6 @@ section{scroll-margin-top:var(--nav-h)}
       <a class="btn btn--primary" href="#contact">Work With Us</a>
       <a class="btn btn--ghost" href="#capabilities">Our Capabilities</a>
     </div>
-   </div>
-
-    <svg class="hero__fish" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-      <defs><clipPath id="avHero"><circle cx="50" cy="50" r="48"/></clipPath></defs>
-      <circle cx="50" cy="50" r="48" fill="#374D79"/>
-      <g clip-path="url(#avHero)">
-        <circle cx="78" cy="24" r="8" fill="#D85900"/>
-        <path d="M0 78 C 16 70, 30 70, 50 78 S 84 86, 100 76 V100 H0 Z" fill="#009EAF" opacity=".35"/>
-        <g transform="translate(13 28) scale(0.62)">
-          <path d="M52 16 Q62 2 78 15 Z" fill="#007F8D"/>
-          <path d="M32 40 L10 22 Q4 40 10 58 Z" fill="#007F8D" stroke="#007F8D" stroke-width="6" stroke-linejoin="round"/>
-          <ellipse cx="62" cy="40" rx="36" ry="28" fill="#00B3C6"/>
-          <ellipse cx="64" cy="51" rx="22" ry="11" fill="#BFE3E4"/>
-          <circle cx="77" cy="33" r="7.5" fill="#0F1624"/>
-          <circle cx="79.5" cy="30.5" r="2.6" fill="#FFFFFF"/>
-          <circle cx="71" cy="45" r="4.5" fill="#E8720F" opacity=".75"/>
-          <path d="M85 43 Q89.5 47.5 94 42" stroke="#0F1624" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M50 38 Q44 46 52 50" stroke="#007F8D" stroke-width="3" stroke-linecap="round"/>
-        </g>
-        <circle cx="76" cy="44" r="2.4" stroke="#BFE3E4" stroke-width="1.2"/>
-        <circle cx="81" cy="37" r="1.6" stroke="#BFE3E4" stroke-width="1"/>
-      </g>
-    </svg>
   </div>
 </section>
 
