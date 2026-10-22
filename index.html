@@ -363,23 +363,6 @@ section{scroll-margin-top:var(--nav-h)}
 .fn__pop a:first-of-type{border-top:0}
 .fn__pop a:hover{color:var(--sage)}
 
-/* capabilities */
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1.5rem;margin-top:3.2rem}
-.card{
-  background:var(--paper);border:1px solid var(--hairline);border-radius:3px;
-  padding:2.1rem 1.8rem;transition:transform .25s,box-shadow .25s,border-color .25s;
-  position:relative;overflow:hidden;
-}
-.card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--teal);
-  transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
-@media (hover:hover){
-  .card:hover{transform:translateY(-4px);box-shadow:0 16px 44px -20px rgba(15,22,36,.30);border-color:rgba(0,158,175,.36)}
-  .card:hover::before{transform:scaleX(1)}
-}
-.card .ico{width:34px;height:34px;color:var(--slate);margin-bottom:1.15rem}
-.card h3{margin-bottom:.55rem}
-.card p{margin:0;color:var(--ink-60);font-size:.99rem}
-
 /* contact */
 .contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(2rem,6vw,5rem);align-items:start}
 .form{display:grid;gap:1.15rem}
@@ -473,8 +456,6 @@ section{scroll-margin-top:var(--nav-h)}
   .form .btn{justify-self:stretch;width:100%}
   .entry{margin-top:1.8rem;padding:1.4rem 1.2rem}
   .entry.entry--epigraph{margin-top:0;padding:0}
-  .grid3{gap:1rem;margin-top:2.2rem}
-  .card{padding:1.7rem 1.4rem}
   .brand__seal{width:38px;height:38px}
   .brand__name{font-size:1.45rem}
   /* the ring text is unreadable this small, so phones get the brand sheet's compact seal */
@@ -516,7 +497,6 @@ section{scroll-margin-top:var(--nav-h)}
 
     <ul class="nav__links" id="menu">
       <li><a href="#mission">Mission</a></li>
-      <li><a href="#capabilities">Capabilities</a></li>
       <li><a class="nav__cta" href="#contact">Work With Us</a></li>
     </ul>
   </div>
@@ -538,8 +518,8 @@ section{scroll-margin-top:var(--nav-h)}
     <h1>From American Soil <em>and</em> Shore.</h1>
     <div class="hero__rule"></div>
     <p class="hero__sub">
-      We take in what this country grows and catches — and send it back out
-      frozen, packed, and ready for the shelf.
+      We're building the plant to take in what this country grows and catches — and send
+      it back out frozen, packed, and ready for the shelf.
     </p>
     <ul class="hero__stamps">
       <li>Harvested Here</li>
@@ -548,7 +528,7 @@ section{scroll-margin-top:var(--nav-h)}
     </ul>
     <div class="btnrow">
       <a class="btn btn--primary" href="#contact">Work With Us</a>
-      <a class="btn btn--ghost" href="#capabilities">Our Capabilities</a>
+      <a class="btn btn--ghost" href="#mission">Our Story</a>
     </div>
   </div>
 </section>
@@ -630,7 +610,7 @@ section{scroll-margin-top:var(--nav-h)}
           <span class="n">02</span>
           <div>
             <strong>Restore native ecosystems</strong>
-            <p>We build markets for the species and crops our waters and soils need harvested, turning ecological pressure into a product line.</p>
+            <p>Building markets for the species and crops our waters and soils need harvested, turning ecological pressure into a product line.</p>
           </div>
         </li>
         <li class="surf" style="--d:0.30s">
@@ -645,70 +625,8 @@ section{scroll-margin-top:var(--nav-h)}
   </div>
 </section>
 
-<!-- ============ CAPABILITIES ============ -->
-<section class="sec sec--shell" id="capabilities">
-  <div class="wrap rv">
-    <p class="eyebrow">What We Do</p>
-    <h2>Processing, preserving, <br>and getting it there.</h2>
-    <p class="lede" style="margin-top:1.2rem">
-      A single facility built to take raw domestic product from the dock and the field
-      straight through to a finished, labeled, freight-ready case.
-    </p>
-
-    <div class="grid3">
-      <article class="card">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/><circle cx="12" cy="12" r="3.2"/>
-        </svg>
-        <h3>Frozen at Peak Freshness</h3>
-        <p>Blast freezing on site, so product is held at the quality it came in with — texture, color, and nutrition locked in rather than lost to a long trip to a distant processor.</p>
-      </article>
-
-      <article class="card">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 8.5 12 3l9 5.5v7L12 21l-9-5.5z"/><path d="M3 8.5 12 14l9-5.5M12 14v7"/>
-        </svg>
-        <h3>Processing &amp; Packing</h3>
-        <p>Cutting, portioning, grading, and packaging to retail, foodservice, and private-label spec — with lot-level traceability from intake to pallet.</p>
-      </article>
-
-      <article class="card">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M2 7h11v10H2zM13 10h4.5l3.5 3.5V17h-8z"/><circle cx="6.5" cy="19" r="1.8"/><circle cx="17" cy="19" r="1.8"/>
-        </svg>
-        <h3>Cold Chain &amp; Distribution</h3>
-        <p>On-site frozen storage and outbound logistics that hold temperature from our dock to yours — regional routes, full truckload, and LTL.</p>
-      </article>
-
-      <article class="card">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 3s7 3.5 7 9a7 7 0 1 1-14 0c0-5.5 7-9 7-9z"/><path d="M12 21v-8M12 15l3-2.5M12 17l-3-2.5"/>
-        </svg>
-        <h3>Domestic Sourcing</h3>
-        <p>Direct relationships with U.S. farms and watermen. Every input has a name, a place, and a season attached to it.</p>
-      </article>
-
-      <article class="card">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M9 3h6v3l4 4v11H5V10l4-4z"/><path d="M9 14h6M9 17.5h6"/>
-        </svg>
-        <h3>Private Label</h3>
-        <p>Co-packing and own-brand runs for grocers, distributors, and restaurant groups that want a domestic story on the front of the bag.</p>
-      </article>
-
-      <article class="card">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 2.5 3.5 6v6c0 5 3.6 8.4 8.5 9.5 4.9-1.1 8.5-4.5 8.5-9.5V6z"/><path d="m8.6 12 2.3 2.4 4.5-4.8"/>
-        </svg>
-        <h3>Food Safety</h3>
-        <p>HACCP-based controls, documented sanitation, and third-party audit readiness built into the plant — not bolted on after the fact.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- ============ CONTACT ============ -->
-<section class="sec" id="contact">
+<section class="sec sec--shell" id="contact">
   <div class="wrap contact rv">
     <div>
       <p class="eyebrow">Work With Us</p>
@@ -774,10 +692,6 @@ section{scroll-margin-top:var(--nav-h)}
           <dt>Email</dt>
           <dd><a href="mailto:bryce@freshetfoods.com">bryce@freshetfoods.com</a></dd>
         </div>
-        <div>
-          <dt>Plant &amp; Receiving</dt>
-          <dd>Hours and dock scheduling by appointment.<br>Contact us to arrange intake.</dd>
-        </div>
       </dl>
     </aside>
   </div>
@@ -825,7 +739,6 @@ section{scroll-margin-top:var(--nav-h)}
       </div>
       <ul class="foot__nav">
         <li><a href="#mission">Mission</a></li>
-        <li><a href="#capabilities">Capabilities</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
