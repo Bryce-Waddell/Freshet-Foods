@@ -162,6 +162,15 @@ p{margin:0 0 1.1em}
 }
 .hero__bg svg{position:absolute;left:0;right:0;bottom:-1px;width:130%;min-width:900px;opacity:.5}
 .hero .wrap{position:relative}
+/* logo 3b "One swell": a single line rolls in from the sea and becomes the fish */
+.hero__grid{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(2rem,5vw,4.5rem)}
+.hero__swell{width:clamp(240px,28vw,360px);height:auto;overflow:visible}
+.js .hero__swell path{stroke-dasharray:1;stroke-dashoffset:1;animation:swell-draw 2.4s cubic-bezier(.45,0,.2,1) .35s forwards}
+.js .hero__swell path:nth-of-type(2){animation-duration:1.2s;animation-delay:1.9s}
+.js .hero__swell path:nth-of-type(3){animation-duration:1.8s;animation-delay:0s}
+.js .hero__swell circle{opacity:0;animation:swell-eye .5s ease 2.5s forwards}
+@keyframes swell-draw{to{stroke-dashoffset:0}}
+@keyframes swell-eye{to{opacity:1}}
 .hero h1{
   font-size:clamp(2.9rem,7.4vw,5.4rem);letter-spacing:-.022em;max-width:16ch;
   margin-bottom:1.6rem;
@@ -322,6 +331,18 @@ section{scroll-margin-top:var(--nav-h)}
 .js .route li.up::before{transform:none}
 .js .route li.up::after{opacity:1}
 
+/* logo 2c "Swimming wordmark": the section's sign-off */
+.signoff{
+  display:flex;flex-direction:column;align-items:center;margin:clamp(4.5rem,10vw,7rem) auto 0;
+  font-size:clamp(3rem,7vw,4.6rem);
+}
+.signoff__name{font-size:1em;line-height:1;font-weight:500;letter-spacing:-.01em;color:var(--ink)}
+.signoff svg{width:3.57em;height:auto;margin-top:.02em}
+.signoff__sub{
+  font-family:var(--sans);font-size:max(.72rem,.17em);font-weight:600;letter-spacing:.6em;padding-left:.6em;
+  text-transform:uppercase;color:var(--slate);margin-top:.35rem;
+}
+
 /* the mission closes the section: statement across the page, pillars side by side */
 .mission--after{
   margin-top:clamp(4rem,9vw,6.5rem);padding-top:clamp(2.5rem,6vw,4rem);
@@ -418,12 +439,16 @@ section{scroll-margin-top:var(--nav-h)}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .rv{opacity:1;transform:none;transition:none}
+  .js .hero__swell path{animation:none;stroke-dashoffset:0}
+  .js .hero__swell circle{animation:none;opacity:1}
   .js .surf,.js .route li.surf::before,.js .route li.surf::after{opacity:1;transform:none;filter:none;transition:none}
   *{animation-duration:.001ms!important;transition-duration:.001ms!important}
 }
 
 @media (max-width:880px){
   .mission,.contact{grid-template-columns:1fr}
+  .hero__grid{grid-template-columns:1fr;gap:0}
+  .hero__swell{order:-1;width:150px;margin-bottom:1.8rem}
   .mission--after .pillars{grid-template-columns:1fr;gap:1.6rem}
   body.nav-open{overflow:hidden}
 }
@@ -513,7 +538,8 @@ section{scroll-margin-top:var(--nav-h)}
     </svg>
   </div>
 
-  <div class="wrap">
+  <div class="wrap hero__grid">
+   <div>
     <p class="eyebrow">Freshet Foods &middot; Domestic Food Processing</p>
     <h1>From American Soil <em>and</em> Shore.</h1>
     <div class="hero__rule"></div>
@@ -530,6 +556,14 @@ section{scroll-margin-top:var(--nav-h)}
       <a class="btn btn--primary" href="#contact">Work With Us</a>
       <a class="btn btn--ghost" href="#mission">Our Story</a>
     </div>
+   </div>
+
+    <svg class="hero__swell" viewBox="0 0 200 120" fill="none" role="img" aria-label="Freshet Foods symbol: a swell that becomes a fish">
+      <path pathLength="1" d="M6 84 C 22 70, 40 92, 60 60 C 90 18, 142 20, 178 60 C 142 100, 90 100, 60 60 C 50 46, 40 38, 28 36 C 18 34, 12 40, 6 34" stroke="#F5F7F7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path pathLength="1" d="M86 62 C 100 54, 112 54, 124 62 S 144 70, 154 63" stroke="#009EAF" stroke-width="3.5" stroke-linecap="round"/>
+      <path pathLength="1" d="M40 110 C 64 100, 84 100, 108 110 S 152 120, 178 106" stroke="#009EAF" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="150" cy="50" r="5.5" fill="#D85900"/>
+    </svg>
   </div>
 </section>
 
@@ -621,6 +655,23 @@ section{scroll-margin-top:var(--nav-h)}
           </div>
         </li>
       </ul>
+    </div>
+
+    <div class="signoff surf" role="img" aria-label="Freshet Foods">
+      <span class="signoff__name" aria-hidden="true">Freshet</span>
+      <svg viewBox="0 0 300 46" fill="none" aria-hidden="true">
+        <path d="M2 30 C 22 22, 42 22, 62 30 S 102 38, 122 30 S 162 22, 182 30 S 214 36, 226 32" stroke="#007F8D" stroke-width="4" stroke-linecap="round"/>
+        <g transform="translate(236 6) rotate(-10) scale(0.44)">
+          <path d="M32 40 L10 22 Q4 40 10 58 Z" fill="#006C79" stroke="#006C79" stroke-width="6" stroke-linejoin="round"/>
+          <ellipse cx="62" cy="40" rx="36" ry="28" fill="#009EAF"/>
+          <circle cx="77" cy="33" r="9" fill="#0F1624"/>
+          <circle cx="80" cy="30" r="3.2" fill="#FFFFFF"/>
+          <path d="M84 44 Q89.5 49 95 43" stroke="#0F1624" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <circle cx="290" cy="8" r="2.4" stroke="#94B6B7" stroke-width="1.2"/>
+        <circle cx="296" cy="2.5" r="1.5" stroke="#94B6B7" stroke-width="1"/>
+      </svg>
+      <span class="signoff__sub" aria-hidden="true">Foods</span>
     </div>
   </div>
 </section>
